@@ -290,3 +290,81 @@
 .navItem[href="/resumenes"].active .bar1 { height: 80%; }
 .navItem[href="/resumenes"].active .bar2 { height: 45%; }
 .navItem[href="/resumenes"].active .bar3 { height: 100%; }
+
+/* src/App.module.css */
+
+/* ... animaciones iguales (auroraGlow, pageTransition, logoGlow) ... */
+
+.mobileContainer {
+  width: 100%; max-width: 480px; margin: 0 auto;
+  height: 100vh; display: flex; flexDirection: column;
+  background: var(--bg-gradient);
+  position: relative; overflow: hidden;
+}
+
+.mobileContainer::before {
+  content: ''; position: absolute; top: 10%; left: 50%; width: 140%; height: 50%;
+  background: var(--bg-aurora);
+  animation: auroraGlow 8s infinite ease-in-out;
+  pointer-events: none; z-index: 1;
+}
+
+.header {
+  padding: 32px 24px 16px 24px;
+  background: transparent; display: flex; justifyContent: space-between;
+  alignItems: flex-start; z-index: 10;
+}
+
+.brandName {
+  font-size: 32px; font-weight: 900; letter-spacing: -1.5px;
+  margin: 0; line-height: 1;
+  background: var(--brand-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* El drop-shadow ayuda a separar las letras blancas del fondo claro */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+}
+
+.brandSuffix {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+}
+
+.pageTitle {
+  font-size: 13px; color: var(--text-muted);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-top: 6px;
+}
+
+.bottomNav {
+  position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+  width: 90%; height: 72px;
+  background: var(--bg-nav);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-color);
+  border-radius: 28px; display: flex; justifyContent: space-around; alignItems: center;
+  z-index: 20; box-shadow: var(--shadow-heavy);
+}
+
+.navItem {
+  color: var(--icon-default);
+  /* ... resto de propiedades de navItem igual ... */
+}
+
+.navItem.active {
+  color: var(--accent-cyan);
+}
+
+.navItem[href="/resumenes"].active {
+  color: var(--accent-pink) !important;
+}
+
+/* Evitamos que el texto de las etiquetas se pierda */
+.navLabel {
+  color: var(--text-muted);
+  font-weight: 800;
+}
+
+.navItem.active .navLabel {
+  color: currentColor;
+}
