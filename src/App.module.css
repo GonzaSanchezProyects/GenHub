@@ -366,3 +366,33 @@
 .navItem[href="/resumenes"].active .bar1 { height: 80%; }
 .navItem[href="/resumenes"].active .bar2 { height: 50%; }
 .navItem[href="/resumenes"].active .bar3 { height: 100%; }
+
+/* src/App.module.css */
+
+.mobileContainer {
+  /* ... tus estilos existentes ... */
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Evita que el contenedor principal rebote */
+  overscroll-behavior: none; 
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 20px 100px 20px;
+  /* IMPORTANTE: Quita el rebote del área de scroll interna */
+  overscroll-behavior-y: contain; 
+  
+  /* Tus estilos para ocultar la barra de scroll se mantienen */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
