@@ -1,42 +1,36 @@
-import React from 'react'
-import styles from './MetricCard.module.css'
+import React from 'react';
 
-export default function MetricCard({
-  label,
-  value,
-  unit,
-  sub,
-  trend,
-  trendLabel,
-  accent = 'cyan',
-  size = 'md',
-  icon,
-  mono = false,
-  className,
-}) {
-  const trendPositive = trend > 0
-  const trendNeutral = trend === 0 || trend === undefined
+export default function MetricCard({ title, value, type = 'neutral', format = 'currency', subtitle = '' }) {
+  const colors = {
+    ingreso: '#00e5a0', // Verde
+    egreso: '#ff4757',  // Rojo
+    alerta: '#ffa502',  // Naranja
+    neutral: '#00d4ff'  // Azul
+  };
+
+  const formattedValue = format === 'currency' 
+    ? `$${value.toLocaleString('es-AR')}` 
+    : value;
 
   return (
-    <div className={`${styles.card} ${styles[`accent_${accent}`]} ${styles[`size_${size}`]} ${className || ''}`}>
-      {icon && <div className={styles.icon}>{icon}</div>}
-      <div className={styles.body}>
-        <span className={styles.label}>{label}</span>
-        <div className={styles.valueRow}>
-          <span className={`${styles.value} ${mono ? styles.mono : ''}`}>{value}</span>
-          {unit && <span className={styles.unit}>{unit}</span>}
-        </div>
-        {(sub || trend !== undefined) && (
-          <div className={styles.footer}>
-            {sub && <span className={styles.sub}>{sub}</span>}
-            {trend !== undefined && (
-              <span className={`${styles.trend} ${trendPositive ? styles.trendUp : trendNeutral ? styles.trendFlat : styles.trendDown}`}>
-                {trendPositive ? '↑' : trendNeutral ? '→' : '↓'} {Math.abs(trend)}%{trendLabel ? ` ${trendLabel}` : ''}
-              </span>
-            )}
-          </div>
-        )}
+    <div style={{
+      background: '#111820',
+      padding: '16px 20px',
+      borderRadius: '16px',
+      border: `1px solid ${type === 'alerta' ? '#ffa50240' : '#1f2028'}`,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '4px'
+    }}>
+      <span style={{ color: '#7a8899', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+        {title}
+      </span>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+        <span style={{ color: colors[type], fontSize: '24px', fontWeight: 'bold' }}>
+          {formattedValue}
+        </span>
+        {subtitle && <span style={{ color: '#7a8899', fontSize: '12px' }}>{subtitle}</span>}
       </div>
     </div>
-  )
+  );
 }

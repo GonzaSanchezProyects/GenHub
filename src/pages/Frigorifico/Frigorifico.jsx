@@ -1,6 +1,3 @@
-Frigorifico · JSX
-Copiar
-
 import React, { useState } from 'react'
 import { frigorifico } from '../../data/mockData'
 import MetricCard from '../../components/MetricCard/MetricCard'
