@@ -1,0 +1,268 @@
+.page { animation: sweep-in 0.35s ease; }
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sectionTitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-dim);
+}
+
+.camarasGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.camaraCard {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 14px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+.camaraCard:hover { border-color: var(--accent-electric); }
+
+.camaraAlert {
+  border-color: rgba(255,71,87,0.4);
+  background: rgba(255,71,87,0.04);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.camaraHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.camaraId {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+}
+
+.camaraStatus {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.statusOk { background: var(--accent-green-dim); color: var(--accent-green); }
+.statusAlerta { background: var(--accent-red-dim); color: var(--accent-red); }
+
+.camaraName {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.thermoContainer {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-bottom: 16px;
+  height: 80px;
+}
+
+.thermoTrack {
+  width: 12px;
+  height: 100%;
+  background: var(--bg-surface);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+  border: 1px solid var(--border-dim);
+}
+
+.thermoFill {
+  width: 100%;
+  border-radius: 4px;
+  transition: height 1s ease;
+}
+
+.thermoNormal { background: linear-gradient(to top, var(--accent-electric), rgba(0,212,255,0.4)); }
+.thermoAlert { background: linear-gradient(to top, var(--accent-red), rgba(255,71,87,0.4)); }
+.thermoFreeze { background: linear-gradient(to top, #a5f3fc, rgba(165,243,252,0.3)); }
+
+.thermoValue {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.tempNum {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--accent-electric);
+  line-height: 1;
+}
+
+.tempAlertColor { color: var(--accent-red); }
+
+.tempMax {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-tertiary);
+}
+
+.camaraFooter {
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 12px;
+}
+
+.camaraMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.camaraMetricLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+
+.camaraMetricValue {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+/* Tabs */
+.tabsRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-dim);
+  padding-bottom: 0;
+}
+
+.tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: -1px;
+}
+
+.tab:hover { color: var(--text-primary); }
+
+.tabActive {
+  color: var(--accent-electric);
+  border-bottom-color: var(--accent-electric);
+}
+
+/* Table */
+.tableCard {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.table thead tr {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.table th {
+  padding: 12px 16px;
+  text-align: left;
+  color: var(--text-tertiary);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.table tr:last-child td { border-bottom: none; }
+
+.table tr:hover td { background: var(--accent-cyan-dim); }
+
+.tdMain { color: var(--text-primary); font-family: var(--font-body); font-size: 13px; }
+.tdMono { font-family: var(--font-mono); }
+
+.monoTag {
+  background: var(--bg-surface);
+  color: var(--accent-electric);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+.badge {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge_optimo { background: var(--accent-green-dim); color: var(--accent-green); }
+.badge_reciente { background: var(--accent-cyan-dim); color: var(--accent-electric); }
+.badge_proximo-venc { background: var(--accent-gold-dim); color: var(--accent-gold); }
+.badge_proximo { background: var(--accent-gold-dim); color: var(--accent-gold); }
+
+.trazabilidadTag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-cyan-dim);
+  border: 1px solid var(--accent-border);
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--accent-electric);
+  margin-top: 16px;
+}

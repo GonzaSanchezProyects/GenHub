@@ -1,0 +1,220 @@
+.page { animation: sweep-in 0.35s ease; }
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 260px;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.mesasCard, .donutCard, .picoCard {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.mesasGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mesa {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 1px solid var(--border-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.mesaActiva {
+  background: var(--accent-gold-dim);
+  border-color: rgba(240,180,41,0.3);
+}
+
+.mesaLibre {
+  background: var(--bg-surface);
+}
+
+.mesaNum {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.mesaStatus {
+  font-size: 10px;
+}
+
+.mesaLegend {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+}
+
+.legendItem { display: flex; align-items: center; gap: 6px; }
+.dotGreen { width: 8px; height: 8px; border-radius: 2px; background: var(--accent-gold-dim); border: 1px solid var(--accent-gold); display: inline-block; }
+.dotGray { width: 8px; height: 8px; border-radius: 2px; background: var(--bg-surface); border: 1px solid var(--border-dim); display: inline-block; }
+
+.catList { display: flex; flex-direction: column; gap: 8px; }
+
+.catItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.catDot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.catName { flex: 1; color: var(--text-secondary); }
+.catOrdenes { color: var(--text-tertiary); }
+.catIngresos { color: var(--text-primary); font-weight: 500; }
+
+/* Pico card */
+.picoHora {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent-gold);
+  margin-bottom: 6px;
+}
+
+.picoValue {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.picoSub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-bottom: 20px;
+}
+
+.stockAlert {
+  background: var(--accent-gold-dim);
+  border: 1px solid rgba(240,180,41,0.25);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.stockAlertTitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.stockAlertItem {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.stockVal { color: var(--accent-red); }
+
+/* Orders */
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.ordenesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.ordenCard {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 12px;
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+
+.orden_cocina { border-color: rgba(240,180,41,0.3); background: var(--accent-gold-dim); }
+.orden_cerrado { opacity: 0.6; }
+
+.ordenHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.ordenId {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-tertiary);
+}
+
+.ordenBadge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+.badge_servido { background: var(--accent-green-dim); color: var(--accent-green); }
+.badge_cocina { background: var(--accent-gold-dim); color: var(--accent-gold); }
+.badge_cerrado { background: var(--bg-surface); color: var(--text-tertiary); }
+
+.ordenMesa {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.ordenItems {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.ordenTotal {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-gold);
+}

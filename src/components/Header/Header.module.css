@@ -1,0 +1,140 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);
+  right: 0;
+  height: var(--header-height);
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-dim);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 28px;
+  z-index: 50;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 200px;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.pageSub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.5px;
+}
+
+.headerCenter {
+  flex: 1;
+  overflow: hidden;
+}
+
+.ticker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-dim);
+  border-radius: 6px;
+  padding: 4px 10px;
+  overflow: hidden;
+}
+
+.tickerLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--accent-electric);
+  background: var(--accent-cyan-dim);
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  flex-shrink: 0;
+  border: 1px solid var(--accent-border);
+}
+
+.tickerTrack {
+  flex: 1;
+  overflow: hidden;
+}
+
+.tickerContent {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  animation: ticker 40s linear infinite;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.clockTime {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.clockDate {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.alertIndicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-red-dim);
+  border: 1px solid rgba(255,71,87,0.3);
+  border-radius: 20px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.alertIndicator:hover {
+  background: rgba(255,71,87,0.2);
+}
+
+.alertDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-red);
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+.alertCount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-red);
+}
