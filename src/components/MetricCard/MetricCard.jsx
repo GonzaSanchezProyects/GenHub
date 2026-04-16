@@ -1,41 +1,58 @@
+// src/components/MetricCard/MetricCard.jsx
 import React from 'react';
 
-export default function MetricCard({ title, value, type = 'neutral', format = 'currency', subtitle = '' }) {
-  const colors = {
+export default function MetricCard({ title, value, type = 'neutral', subtitle, format }) {
+  
+  // Colores dinámicos según el tipo de métrica
+  const glowColor = {
+    ingreso: 'rgba(0, 229, 160, 0.1)',
+    egreso: 'rgba(255, 71, 87, 0.1)',
+    alerta: 'rgba(255, 165, 2, 0.1)',
+    neutral: 'rgba(0, 212, 255, 0.1)'
+  }[type];
+
+  const valueColor = {
     ingreso: '#00e5a0',
     egreso: '#ff4757',
     alerta: '#ffa502',
     neutral: '#00d4ff'
-  };
+  }[type];
 
-  const formattedValue = format === 'currency' 
-    ? `$${value.toLocaleString('es-AR')}` 
-    : value;
+  // Formateo del valor (números a moneda, textos se mantienen)
+  const displayValue = format === 'text' || format === 'fraction' 
+    ? value 
+    : `$${Number(value).toLocaleString('es-AR')}`;
 
   return (
     <div style={{
-      /* Efecto translúcido (Glassmorphism) */
-      background: 'rgba(17, 24, 32, 0.4)',
-      backdropFilter: 'blur(12px)',
-      WebkitBackdropFilter: 'blur(12px)',
-      padding: '18px 20px',
-      borderRadius: '20px',
-      border: `1px solid ${type === 'alerta' ? 'rgba(255, 165, 2, 0.3)' : 'rgba(255, 255, 255, 0.05)'}`,
-      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+      background: 'var(--bg-card)',            // <- Cambiado
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      padding: '20px',
+      borderRadius: '24px',
+      border: '1px solid var(--border-color)', // <- Cambiado
+      boxShadow: `inset 0 0 20px ${glowColor}`, 
       display: 'flex',
       flexDirection: 'column',
       gap: '6px',
-      transition: 'transform 0.2s ease'
+      position: 'relative',
+      overflow: 'hidden',
+      animation: `metricItemFadeIn 0.5s ease-out 0.1s both`
     }}>
-      <span style={{ color: '#8b9bb4', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: '600' }}>
+      <div style={{ position: 'absolute', left: 0, top: '20%', bottom: '20%', width: '3px', background: glowColor.replace('0.1', '1'), borderRadius: '0 4px 4px 0' }} />
+      
+      <div style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: '600' }}> {/* <- Cambiado */}
         {title}
-      </span>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-        <span style={{ color: colors[type], fontSize: '26px', fontWeight: '800', letterSpacing: '-0.5px' }}>
-          {formattedValue}
-        </span>
-        {subtitle && <span style={{ color: '#5c6b7f', fontSize: '12px', fontWeight: '500' }}>{subtitle}</span>}
       </div>
+      <div style={{ color: valueColor, fontSize: '24px', fontWeight: '800', letterSpacing: '-0.5px' }}>
+        {displayValue}
+      </div>
+      
+      {subtitle && (
+        <div style={{ color: 'var(--text-muted)', fontSize: '11px', marginTop: '4px', fontWeight: '500' }}> {/* <- Cambiado */}
+          {subtitle}
+        </div>
+      )}
     </div>
   );
 }

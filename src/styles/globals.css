@@ -1,50 +1,104 @@
-/* ── Vitta Complex Global Styles ── */
+/* ── GenHub Global Styles ── */
+
+/* =========================================
+   TOKENS — MODO OSCURO (defecto)
+   ========================================= */
+
+:root,
+[data-theme='dark'] {
+  /* Fondos — azul marino profundo */
+  --bg-void:     #05080f;
+  --bg-base:     #080e19;
+  --bg-surface:  #0d1525;
+  --bg-elevated: #111e30;
+  --bg-glass:    rgba(10, 18, 32, 0.75);
+
+  /* Acentos de marca */
+  --accent-electric:   #3aa0e6;
+  --accent-cyan-dim:   rgba(58, 160, 230, 0.11);
+  --accent-cyan-mid:   rgba(58, 160, 230, 0.32);
+  --accent-gold:       #f0b429;
+  --accent-gold-dim:   rgba(240, 180, 41, 0.11);
+  --accent-green:      #00e5a0;
+  --accent-green-dim:  rgba(0, 229, 160, 0.11);
+  --accent-red:        #ff4757;
+  --accent-red-dim:    rgba(255, 71, 87, 0.11);
+  --accent-orange:     #ff6b35;
+
+  /* Texto */
+  --text-primary:   #e8f0fa;
+  --text-secondary: #6b85a8;
+  --text-tertiary:  #3a5070;
+  --text-accent:    #3aa0e6;
+
+  /* Bordes */
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-dim:    rgba(255, 255, 255, 0.07);
+  --border-accent: rgba(58, 160, 230, 0.22);
+
+  /* Sombras */
+  --shadow-glow-cyan:  0 0 28px rgba(58, 160, 230, 0.18);
+  --shadow-glow-green: 0 0 20px rgba(0, 229, 160, 0.18);
+  --shadow-card:       0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================
+   TOKENS — MODO CLARO
+   ========================================= */
+
+[data-theme='light'] {
+  /* Fondos */
+  --bg-void:     #cddff4;
+  --bg-base:     #dce9f7;
+  --bg-surface:  #eef4fc;
+  --bg-elevated: #ffffff;
+  --bg-glass:    rgba(240, 248, 255, 0.82);
+
+  /* Acentos de marca — idénticos, funcionan en ambos fondos */
+  --accent-electric:   #1a6bb5;
+  --accent-cyan-dim:   rgba(26, 107, 181, 0.09);
+  --accent-cyan-mid:   rgba(26, 107, 181, 0.22);
+  --accent-gold:       #c88a00;
+  --accent-gold-dim:   rgba(200, 138, 0, 0.1);
+  --accent-green:      #00a874;
+  --accent-green-dim:  rgba(0, 168, 116, 0.1);
+  --accent-red:        #d93545;
+  --accent-red-dim:    rgba(217, 53, 69, 0.09);
+  --accent-orange:     #d4501f;
+
+  /* Texto */
+  --text-primary:   #0d1e33;
+  --text-secondary: #4a6885;
+  --text-tertiary:  #8aaec8;
+  --text-accent:    #1a6bb5;
+
+  /* Bordes */
+  --border-subtle: rgba(0, 60, 120, 0.06);
+  --border-dim:    rgba(0, 60, 120, 0.1);
+  --border-accent: rgba(26, 107, 181, 0.25);
+
+  /* Sombras */
+  --shadow-glow-cyan:  0 0 24px rgba(26, 107, 181, 0.12);
+  --shadow-glow-green: 0 0 18px rgba(0, 168, 116, 0.14);
+  --shadow-card:       0 4px 24px rgba(0, 40, 100, 0.08);
+}
+
+/* =========================================
+   TOKENS FIJOS (no cambian con el tema)
+   ========================================= */
 
 :root {
-  /* Core Palette */
-  --bg-void: #050709;
-  --bg-base: #090c10;
-  --bg-surface: #0d1117;
-  --bg-elevated: #111820;
-  --bg-glass: rgba(13, 17, 23, 0.72);
-
-  /* Brand Accents */
-  --accent-electric: #00d4ff;
-  --accent-cyan-dim: rgba(0, 212, 255, 0.12);
-  --accent-cyan-mid: rgba(0, 212, 255, 0.35);
-  --accent-gold: #f0b429;
-  --accent-gold-dim: rgba(240, 180, 41, 0.12);
-  --accent-green: #00e5a0;
-  --accent-green-dim: rgba(0, 229, 160, 0.12);
-  --accent-red: #ff4757;
-  --accent-red-dim: rgba(255, 71, 87, 0.12);
-  --accent-orange: #ff6b35;
-
-  /* Text */
-  --text-primary: #e8edf5;
-  --text-secondary: #7a8899;
-  --text-tertiary: #3d4f63;
-  --text-accent: #00d4ff;
-
-  /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-dim: rgba(255, 255, 255, 0.08);
-  --border-accent: rgba(0, 212, 255, 0.25);
-
-  /* Typography */
   --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
 
-  /* Spacing */
   --sidebar-width: 260px;
   --header-height: 64px;
-
-  /* Shadows */
-  --shadow-glow-cyan: 0 0 30px rgba(0, 212, 255, 0.15);
-  --shadow-glow-green: 0 0 20px rgba(0, 229, 160, 0.2);
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
 }
+
+/* =========================================
+   BASE
+   ========================================= */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -64,76 +118,74 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-#root {
-  min-height: 100vh;
-}
+#root { min-height: 100vh; }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg-surface); }
 ::-webkit-scrollbar-thumb { background: var(--text-tertiary); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-secondary); }
 
-/* Utility */
+/* =========================================
+   UTILIDADES
+   ========================================= */
+
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
   overflow: hidden;
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border-width: 0;
 }
 
-/* Animations */
+/* =========================================
+   ANIMACIONES
+   ========================================= */
+
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.85); }
+  50%       { opacity: 0.5; transform: scale(0.85); }
 }
 
 @keyframes sweep-in {
   from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slide-right {
   from { opacity: 0; transform: translateX(-20px); }
-  to { opacity: 1; transform: translateX(0); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(0,212,255,0.2); }
-  50% { box-shadow: 0 0 25px rgba(0,212,255,0.5); }
+  0%, 100% { box-shadow: 0 0 10px rgba(58, 160, 230, 0.18); }
+  50%       { box-shadow: 0 0 24px rgba(58, 160, 230, 0.45); }
 }
 
 @keyframes scanline {
   from { transform: translateY(-100%); }
-  to { transform: translateY(100vh); }
+  to   { transform: translateY(100vh); }
 }
 
 @keyframes ticker {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes bar-fill {
   from { width: 0; }
-  to { width: var(--target-width); }
-}
-
-@keyframes count-up {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  to   { width: var(--target-width); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
