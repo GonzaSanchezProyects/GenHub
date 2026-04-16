@@ -1,3 +1,17 @@
+/* src/App.module.css */
+
+/* Animación de carga inicial (Header) */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* NUEVA: Animación rápida para cambio de pantallas */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: scale(0.98) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 .mobileContainer {
   width: 100%;
   max-width: 480px;
@@ -5,61 +19,74 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #050709;
+  background: linear-gradient(180deg, #0a0f16 0%, #030406 100%);
   position: relative;
-  border-left: 1px solid #1f2028;
-  border-right: 1px solid #1f2028;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 .header {
-  height: 60px;
-  background: #111820;
+  padding: 30px 24px 10px 24px;
+  background: transparent;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: 1px solid #1f2028;
-  position: sticky;
-  top: 0;
+  flex-direction: column;
+  gap: 4px;
   z-index: 10;
 }
 
-.headerTitle {
-  font-family: sans-serif;
-  font-weight: 700;
-  color: #fff;
-  font-size: 16px;
+.greeting {
+  font-size: 14px;
+  color: #00d4ff;
+  font-weight: 600;
   letter-spacing: 0.5px;
+  animation: fadeSlideUp 0.5s ease-out both; 
+}
+
+.headerTitle {
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 26px;
+  margin: 0;
+  letter-spacing: -0.5px;
+  animation: fadeSlideUp 0.5s ease-out 0.1s both; 
 }
 
 .content {
   flex: 1;
   overflow-y: auto;
-  padding: 24px 20px 90px 20px; /* Padding bottom extra para el menú */
+  padding: 16px 24px 100px 24px;
+  /* Quitamos la animación de acá para que no se anime el scroll entero */
 }
 
-/* Oculta la barra de scroll en Chrome/Safari para un look más "App" */
-.content::-webkit-scrollbar {
-  display: none;
-}
-.content {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+.content::-webkit-scrollbar { display: none; }
+.content { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* NUEVA CLASE: Envuelve cada página y detona la animación al navegar */
+.pageTransition {
+  animation: pageFadeIn 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  width: 100%;
 }
 
 .bottomNav {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
   height: 70px;
-  background: #111820;
-  border-top: 1px solid #1f2028;
+  background: rgba(17, 24, 32, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding-bottom: env(safe-area-inset-bottom);
   z-index: 20;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .navItem {
@@ -67,26 +94,275 @@
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: #7a8899;
+  color: #5c6b7f;
   font-size: 11px;
-  font-family: sans-serif;
-  gap: 6px;
-  transition: all 0.2s ease;
+  gap: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 30%;
+}
+
+.icon { font-size: 22px; transition: transform 0.3s ease; }
+.navLabel { font-weight: 600; transition: color 0.3s ease; }
+
+.navItem.active { color: #00d4ff; }
+.navItem.active .icon { transform: translateY(-3px) scale(1.1); color: #fff; }
+.navItem.active .navLabel { color: #fff; }
+
+/* src/App.module.css (Añadir/Modificar estas clases) */
+
+.header {
+  padding: 24px 24px 12px 24px;
+  background: transparent;
+  z-index: 10;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.headerActionButton {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  animation: fadeSlideUp 0.5s ease-out 0.2s both;
+}
+
+.headerActionButton:active {
+  transform: scale(0.9);
+  background: rgba(0, 212, 255, 0.2);
+}
+
+/* Ajuste para el Navbar de 4 items */
+.bottomNav {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%; /* Un poco más ancho para 4 items */
+  height: 70px;
+  background: rgba(17, 24, 32, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 20;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.navItem {
+  width: 22%; /* Ajustado para 4 botones */
+  /* ... resto de las propiedades igual ... */
+}
+
+.bottomNav {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%; /* Más ancho para 4 items */
+  height: 70px;
+  background: rgba(17, 24, 32, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 20;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.navItem {
+  width: 22%; /* Ajustado para 4 botones */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #5c6b7f;
+  font-size: 11px;
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .icon {
   font-size: 22px;
-}
-
-.navItem.active {
-  color: #00d4ff;
-}
-
-.navItem.active .icon {
-  transform: scale(1.1);
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .navLabel {
   font-weight: 600;
+  transition: color 0.3s ease;
 }
+
+/* EFECTOS DE ÍCONO ACTIVO */
+.navItem.active {
+  color: #00d4ff; /* Azul cyan por defecto */
+}
+
+.navItem.active .icon {
+  transform: translateY(-3px) scale(1.1);
+  color: #fff;
+}
+
+.navItem.active .navLabel {
+  color: #fff;
+}
+
+/* --- NUEVO ESTILO DE ÍCONO CUSTOM PARA REPORTES --- */
+/* Cuando el ícono 'Reportes' está ACTIVO */
+.navItem[href="/resumenes"].active .icon {
+  position: relative;
+  display: inline-block;
+  color: #ff4785; /* Rosa magenta intenso */
+  /* Reemplazar el ícono de texto con el custom diseñado */
+  content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='20.5' y1='3.5' x2='3.5' y2='20.5' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23ff4785'/%3E%3Cstop offset='1' stop-color='%23ec4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M13.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm-1 1.5c1.1 0 2 .9 2 2v2.5a.5.5 0 0 1-1 0v-2.5a1 1 0 0 0-2 0v2.5a.5.5 0 0 1-1 0v-2.5a1 1 0 0 0-2 0v2.5a.5.5 0 0 1-1 0v-2.5c0-1.1.9-2 2-2h4Zm-2.5-3.5c-1.1 0-2 .9-2 2v2a.5.5 0 0 0 1 0v-2a1 1 0 0 1 2 0v2a.5.5 0 0 0 1 0v-2c0-1.1.9-2 2-2h1c1.1 0 2 .9 2 2v2a.5.5 0 0 0 1 0v-2a2 2 0 0 0-2-2H10Zm11 0c-1.1 0-2 .9-2 2v6.5c0 1.1.9 2 2 2h1a.5.5 0 0 1 0 1h-1c-1.1 0-2-.9-2-2V8a2 2 0 0 1-2-2v-1c0-1.1.9-2 2-2a.5.5 0 0 1 0-1c1.1 0 2 .9 2 2v1c0 1.1-.9 2-2 2h-1c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h2a.5.5 0 0 1 0 1h-2a2 2 0 0 0-2-2V8c0-1.1.9-2-2-2H8.5V4a2.5 2.5 0 0 1 5 0V8h1.5A2.5 2.5 0 0 1 18 10.5Zm-2 1h1c1.1 0 2 .9 2 2V19c0 1.1-.9 2-2 2H17.5a.5.5 0 0 1 0 1h2a2 2 0 0 0 2-2V12.5a2 2 0 0 0-2-2H17a.5.5 0 0 0 0 1Z' fill='url(%23a)'/%3E%3Cpath d='M22 6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z' fill='url(%23a)'/%3E%3C/svg%3E");
+  width: 24px; /* Ajustar tamaño para que coincida con el resto */
+  height: 24px;
+  transform: translateY(-2px) scale(1);
+}
+
+/* Efecto de resplandor para el ícono de Reportes */
+
+
+/* src/App.module.css */
+
+/* ... (tus estilos de .bottomNav y .navItem se mantienen) ... */
+
+.iconContainer {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* DISEÑO DEL ÍCONO DE REPORTES (Gráfico de barras minimalista) */
+.barGraph {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  width: 18px;
+  height: 16px;
+}
+
+.barGraph span {
+  width: 4px;
+  border-radius: 1px;
+  background: #5c6b7f; /* Color apagado por defecto */
+  transition: all 0.3s ease;
+}
+
+.bar1 { height: 60%; }
+.bar2 { height: 100%; }
+.bar3 { height: 40%; }
+
+/* ESTADO ACTIVO PARA REPORTES */
+.navItem[href="/resumenes"].active .barGraph span {
+  background: linear-gradient(to bottom, #ff4785, #ec4899);
+  box-shadow: 0 0 10px rgba(255, 71, 133, 0.5);
+}
+
+.navItem[href="/resumenes"].active .bar1 { height: 80%; }
+.navItem[href="/resumenes"].active .bar2 { height: 50%; }
+.navItem[href="/resumenes"].active .bar3 { height: 100%; }
+
+/* ÍCONOS GENÉRICOS (Home y Naves) con formas geométricas */
+.homeIcon span {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+}
+
+.naveIcon span {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.navItem.active {
+  color: #00d4ff; /* Azul para Home/Naves */
+}
+
+.navItem[href="/resumenes"].active {
+  color: #ff4785; /* Rosa para Reportes */
+}
+
+/* src/App.module.css */
+
+/* 1. Asegúrate de que el navItem no tenga fondos raros */
+.navItem {
+  width: 22%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #5c6b7f;
+  background: transparent; /* Fuerza el fondo transparente */
+  padding: 10px 0;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.navItem {
+  width: 22%; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #5c6b7f;
+  background: transparent; /* Fuerza el fondo transparente */
+  padding: 10px 0;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+/* 2. Ajusta el contenedor del ícono de reportes */
+.reportIcon {
+  background: transparent !important; /* Quita ese recuadro negro que se ve en la foto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 3. Mejora el resplandor magenta del estado activo */
+.navItem[href="/resumenes"].active {
+  color: #ff4785;
+  /* El resplandor debe ser difuso y no un recuadro */
+  filter: drop-shadow(0 0 8px rgba(255, 71, 133, 0.4)); 
+}
+
+/* 4. Asegura que las barras del gráfico se vean bien */
+.barGraph span {
+  width: 4px;
+  border-radius: 1px;
+  background: currentColor; /* Usa el color del texto (gris o magenta) */
+  transition: all 0.3s ease;
+}
+
+/* Animación sutil de las barras cuando está activo */
+.navItem[href="/resumenes"].active .bar1 { height: 80%; }
+.navItem[href="/resumenes"].active .bar2 { height: 50%; }
+.navItem[href="/resumenes"].active .bar3 { height: 100%; }
